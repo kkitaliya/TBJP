@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Parent Menu: ALL -->
+    <record id="menu_partner_all" model="ir.ui.menu">
+        <field name="name">ALL</field>
+        <field name="parent_id" ref="contacts.menu_contacts"/>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- USERS -->
+    <record id="action_partner_users" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('is_company','=',False)]</field>
+    </record>
+
+    <record id="menu_partner_users" model="ir.ui.menu">
+        <field name="name">Users</field>
+        <field name="parent_id" ref="menu_partner_all"/>
+        <field name="action" ref="action_partner_users"/>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- COMPANIES -->
+    <record id="action_partner_companies" model="ir.actions.act_window">
+        <field name="name">Companies</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('is_company','=',True)]</field>
+    </record>
+
+    <record id="menu_partner_companies" model="ir.ui.menu">
+        <field name="name">Companies</field>
+        <field name="parent_id" ref="menu_partner_all"/>
+        <field name="action" ref="action_partner_companies"/>
+        <field name="sequence">11</field>
+    </record>
+
+</odoo>

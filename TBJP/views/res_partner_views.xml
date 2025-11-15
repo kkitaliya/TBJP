@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_sales_purchase_add_customer_vendor" model="ir.ui.view">
+        <field name="name">partner.sales.purchase.customer.vendor</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Add inside Sales & Purchase tab -->
+            <xpath expr="//page[@name='sales_purchases']/group[@name='container_row_2']" position="inside">
+                <group string="Customer / Vendor Options" colspan="2">
+                    <field name="customer_rank"/>
+                    <field name="supplier_rank"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account.res_partner_action_customer" model="ir.actions.act_window">
+        <field name="domain">[('customer_rank','=', 1)]</field>
+    </record>
+
+    <record id="account.res_partner_action_supplier" model="ir.actions.act_window">
+        <field name="domain">[('supplier_rank','=', 1)]</field>
+    </record>
+</odoo>
